@@ -1,12 +1,32 @@
 import DStorage from '../abis/DStorage.json'
 import React, { Component } from 'react';
-import Navbar from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
 
-const ipfsClient = require('ipfs-http-client')
-const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
+const ipfsClient = require('ipfs-http-client');
+
+const projectId ='2N2Nat7jXertchmpEonVoCHBiwV';
+const projectSecret = 'e9f8835c0e76f0f650f00a77ed718cc4';
+const auth =
+'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+const client = ipfsClient({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  apiPath: '/api/v0',
+  headers: {
+    authorization: auth,
+  },
+})
+
+
+// const ipfsClient = require('ipfs-http-client')
+// const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
+
+
 
 class App extends Component {
 
@@ -77,8 +97,8 @@ class App extends Component {
     console.log("Submitting file to IPFS...")
 
     // Add file to the IPFS
-    ipfs.add(this.state.buffer, (error, result) => {
-      console.log('IPFS result', result.size)
+    client.add(this.state.buffer, (error, result) => {
+      console.log('IPFS result', result)
       if(error) {
         console.error(error)
         return
@@ -120,7 +140,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar account={this.state.account} />
+       
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
