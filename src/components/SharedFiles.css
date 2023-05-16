@@ -1,0 +1,30 @@
+.SharedFile {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .SharedFile * {
+    box-sizing: border-box;
+  }
+  
+  .SharedFile .container-fluid {
+    width: 90%;
+    margin: auto;
+    padding-top: 30px;
+  }
+  
+  .SharedFile .table {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  
+  .SharedFile .table th {
+    text-align: center;
+  }
+  
+  .SharedFile .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
